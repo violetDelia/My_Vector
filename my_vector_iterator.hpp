@@ -2,7 +2,7 @@
 #ifndef my_vector_iterator_hpp
 #define my_vector_iterator_hpp
 
-#include "my_vector_help.hpp"
+#include <my_vector_help.hpp>
 /**/
 #include <iterator>
 /**/
@@ -21,41 +21,11 @@ public:
     using pointer = typename Vector::const_pointer;
     using reference = const value_type &;
 
-protected:
+private:
     _address element_pointer;
 
 public:
-    vector_const_iterator() noexcept = default; /*: element_pointer()
-    {
-        std::cout << "vector_const_iterator constructor called: " << this
-                  << " size: " << sizeof(*this)
-                  << std::endl
-                  << std::endl;
-    };*/
-    
-    vector_const_iterator(_address ptr) : element_pointer(ptr){
-                                              /* std::cout << "vector_const_iterator constructor called: " << this
-                  << " size: " << sizeof(*this)
-                  << std::endl
-                  << std::endl;*/
-                                          };
-
-    ~vector_const_iterator() = default;
-    /*{
-        std::cout << "vector_const_iterator destoried: " << this
-                  << " size: " << sizeof(*this)
-                  << std::endl
-                  << std::endl;
-    }*/
-
-    vector_const_iterator &operator=(vector_const_iterator &other) = default;
-    /*{
-        element_pointer = other.element_pointer;
-        std::cout << "vector_const_iterator copied: " << this
-                  << std::endl
-                  << std::endl;
-        return *this;
-    }*/
+    vector_const_iterator(_address ptr) : element_pointer(ptr){};
 
 public:
     [[nodiscard]] reference operator*() const
@@ -100,7 +70,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] vector_const_iterator &operator+(const difference_type n) const
+    [[nodiscard]] vector_const_iterator operator+(const difference_type n) const
     {
         vector_const_iterator _temp = *this;
         return _temp += n;
@@ -112,7 +82,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] vector_const_iterator &operator-(const difference_type n) const
+    [[nodiscard]] vector_const_iterator operator-(const difference_type n) const
     {
         vector_const_iterator _temp = *this;
         return _temp -= n;
@@ -183,7 +153,7 @@ public:
     {
         return const_iterator::operator->();
     }
-    
+
     vector_iterator &operator++()
     {
         const_iterator::operator++();
@@ -216,7 +186,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] vector_iterator &operator+(const difference_type n) const
+    [[nodiscard]] vector_iterator operator+(const difference_type n) const
     {
         vector_iterator _temp = *this;
         return _temp += n;
@@ -228,10 +198,15 @@ public:
         return *this;
     }
 
-    [[nodiscard]] vector_iterator &operator-(const difference_type n) const
+    [[nodiscard]] vector_iterator operator-(const difference_type n) const
     {
         vector_iterator _temp = *this;
         return _temp -= n;
+    }
+
+    [[nodiscard]] difference_type operator-(const vector_iterator &other) const
+    {
+        return const_iterator::operator-(other);
     }
 
     [[nodiscard]] reference operator[](const difference_type n) const

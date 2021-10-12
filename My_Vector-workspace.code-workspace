@@ -42,8 +42,21 @@
 			"xstddef": "cpp",
 			"xstring": "cpp",
 			"xtr1common": "cpp",
-			"xutility": "cpp"
+			"xutility": "cpp",
+			"cctype": "cpp",
+			"string": "cpp",
+			"xhash": "cpp",
+			"algorithm": "cpp",
+			"numeric": "cpp",
+			"*.rh": "cpp",
+			"ctime": "cpp",
+			"iomanip": "cpp",
+			"xlocmon": "cpp",
+			"xloctime": "cpp"
 		}
+	},
+	"extensions": {
+		"recommendations": []
 	},
 	
 }
